@@ -3,12 +3,10 @@ package com.jobhunt.saas.controller;
 import com.jobhunt.saas.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
@@ -19,5 +17,12 @@ public class UserController {
         String res="Works Fine though";
         return ResponseEntity.ok().body(res);
     }
+
+    @PostMapping("/demo")
+    public ResponseEntity<String> demo(@RequestParam String text){
+        String res=text+" is demo";
+        return ResponseEntity.ok().body(res);
+    }
+
 
 }

@@ -10,11 +10,14 @@ import lombok.Data;
 public class RegRequest {
     @NotBlank(message = "name Cannot be Blank")
     private String userName;
+
     @NotBlank(message = "Email Cannot be Blank")
     @Email(message = "provide a Valid Email")
     private String email;
+
     @NotBlank(message = "provide A Valid Role")
     private String role;
+
     @NotBlank
     @Size(min = 2, max = 20,message = "Password must be between 8 and 20 characters")
     @Pattern(
