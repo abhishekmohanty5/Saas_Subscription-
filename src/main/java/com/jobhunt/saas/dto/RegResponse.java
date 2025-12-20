@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class RegResponse {
     private String username;
     private String email;
-    private String password;
 }

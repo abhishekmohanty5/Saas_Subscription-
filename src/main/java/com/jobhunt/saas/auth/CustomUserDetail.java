@@ -13,13 +13,13 @@ public class CustomUserDetail implements UserDetails {
     private Users user;
 
     public CustomUserDetail(Users user) {
+
         this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(user.getRole()));
-
+        return List.of(new SimpleGrantedAuthority(user.getRole().name()));
     }
 
     @Override
@@ -30,6 +30,14 @@ public class CustomUserDetail implements UserDetails {
     @Override
     public String getUsername() {
         return user.getEmail();
+    }
+
+    public Long  getId() {
+        return user.getId();
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
 

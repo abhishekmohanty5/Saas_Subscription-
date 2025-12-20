@@ -33,7 +33,10 @@ public class SecurityConfig {
                 //Authorization Configuration
                 .authorizeHttpRequests(auth -> auth
                         //Ignore Or No need of AuthenticationObject for These Request
-                        .requestMatchers("/api/auth/**", "/error").permitAll()                        //Required AuthObject For All Other Request
+                        .requestMatchers("/api/auth/**", "/error").permitAll()
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/subscriptions/**").hasRole("USER")
+                        .requestMatchers("/api/projects/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))

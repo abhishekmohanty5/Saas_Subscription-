@@ -2,6 +2,7 @@ package com.jobhunt.saas.service;
 
 import com.jobhunt.saas.dto.RegRequest;
 import com.jobhunt.saas.dto.RegResponse;
+import com.jobhunt.saas.entity.Role;
 import com.jobhunt.saas.entity.Users;
 import com.jobhunt.saas.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,9 @@ public class UserService {
 
         user.setUsername(requestDto.getUserName());
         user.setEmail(requestDto.getEmail());
-        user.setRole(requestDto.getRole());
+
+        user.setRole(Role.ROLE_USER);
+
         String pas=requestDto.getPassword();
 
         String hashPassword = passwordEncoder.encode(pas);
@@ -28,7 +31,8 @@ public class UserService {
 
         //save In Db
         userRepo.save(user);
-        return new RegResponse(user.getUsername(),user.getEmail(),pas);
+
+        return new RegResponse(user.getUsername(), user.getEmail());
     }
 
     public Users getUserByEmail(String email){
